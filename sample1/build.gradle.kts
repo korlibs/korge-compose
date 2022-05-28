@@ -4,11 +4,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 //compose.version=1.1.0
 
 plugins {
-    //kotlin("jvm") version "1.6.21" apply false
     id("org.jetbrains.compose") version "1.2.0-alpha01-dev686" apply true
-    //id("org.jetbrains.compose") version "1.1.0" apply true
-    id("com.soywiz.korge") version "2.0.0.999" apply true
-    //application
+    id("com.soywiz.korge") version "3.0.0-Beta3" apply true
 }
 
 group = "me.user"
