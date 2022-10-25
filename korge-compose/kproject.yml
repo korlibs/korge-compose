@@ -1,0 +1,10 @@
+name: "korge-compose"
+targets: [jvm, desktop]
+plugins:
+  - org.jetbrains.compose:1.2.0
+dependencies:
+  # https://androidx.dev/storage/compose-compiler/repository
+  # https://github.com/JetBrains/compose-jb/issues/2108#issuecomment-1157978869
+  - "maven::common::com.soywiz.korlibs.korge2:korge:3.3.0"
+  - "maven::common::org.jetbrains.compose.runtime:runtime:1.2.0"
+
