@@ -1,4 +1,4 @@
-#name: deps
 dependencies:
-  - ../korge-compose
-
+    - git::korge-compose::korlibs/korge-compose::/korge-compose::f40bd8c6f9d558182a2821dc4949994808fbe67f
+    #- git::korge-compose::korlibs/korge-compose::/korge-compose::v0.0.1
+    #- ../korge-compose
