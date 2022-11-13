@@ -1,5 +1,6 @@
 name: "korge-compose"
-targets: [jvm, desktop]
+#targets: [jvm, desktop]
+targets: [all]
 plugins:
 #  - org.jetbrains.compose:1.2.0
   - org.jetbrains.compose:1.3.0-alpha01-dev849
