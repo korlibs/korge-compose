@@ -3,7 +3,9 @@ import com.soywiz.korge.gradle.*
 plugins {
         //alias(libs.plugins.korge)
     id("com.soywiz.korge") version "3.3.0"
-    id("org.jetbrains.compose") version "1.2.0"
+    //id("org.jetbrains.compose") version "1.2.0"
+    id("org.jetbrains.compose") version "1.3.0-alpha01-dev849"
+
 }
 
 korge {
@@ -19,11 +21,11 @@ korge {
 // To selectively enable targets
 
     targetJvm()
-    //targetJs()
-    //targetDesktop()
-    //targetDesktopCross()
-    //targetIos()
-    //targetAndroidIndirect() // targetAndroidDirect()
+    targetJs()
+    targetDesktop()
+    targetDesktopCross()
+    targetIos()
+    targetAndroidIndirect() // targetAndroidDirect()
     //serializationJson()
     //targetAndroidDirect()
 }
