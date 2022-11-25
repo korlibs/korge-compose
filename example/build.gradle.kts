@@ -2,7 +2,8 @@ import com.soywiz.korge.gradle.*
 
 plugins {
         //alias(libs.plugins.korge)
-    id("com.soywiz.korge") version "3.3.0"
+    //id("com.soywiz.korge") version "3.3.0"
+    id("com.soywiz.korge") version "4.0.0-alpha-1"
     id("org.jetbrains.compose") version "1.2.0"
 }
 
