@@ -4,7 +4,7 @@ plugins {
         //alias(libs.plugins.korge)
     //id("com.soywiz.korge") version "3.3.0"
     id("com.soywiz.korge") version "4.0.0-alpha-1"
-    id("org.jetbrains.compose") version "1.2.0"
+    id("org.jetbrains.compose") version "1.2.1"
 }
 
 korge {
@@ -20,8 +20,8 @@ korge {
 // To selectively enable targets
 
     targetJvm()
-    //targetJs()
-    //targetDesktop()
+    targetJs()
+    targetDesktop()
     //targetDesktopCross()
     //targetIos()
     //targetAndroidIndirect() // targetAndroidDirect()
