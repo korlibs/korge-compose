@@ -3,6 +3,7 @@ package com.soywiz.korge.compose
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.*
 import com.soywiz.klock.*
+import com.soywiz.korge.ui.*
 import com.soywiz.korge.view.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.*
@@ -26,32 +27,40 @@ suspend fun main() = Korge(width = 256, height = 64) {
 // manage a tree of Nodes.
 // https://developer.android.com/reference/kotlin/androidx/compose/runtime/Applier
 class NodeApplier(root: View) : AbstractApplier<View>(root) {
+    val currentContainer: Container?
+        get() {
+            if (current is UIScrollable) {
+                return (current as UIScrollable).container
+            }
+            return current as? Container?
+        }
+
     override fun insertTopDown(index: Int, instance: View) {
         println("insertTopDown[$index]: $instance")
-        val container = current as? Container? ?: return
+        val container = currentContainer ?: return
         container.addChildAt(instance, container.numChildren - 1 - index)
         //current.children.add(index, instance)
     }
 
     override fun insertBottomUp(index: Int, instance: View) {
         println("insertBottomUp[$index]: $instance")
-        (current as? Container?)?.addChildAt(instance, index)
+        currentContainer?.addChildAt(instance, index)
         // Ignored as the tree is built top-down.
     }
 
     override fun remove(index: Int, count: Int) {
         println("remove[$index]..$count")
-        (current as? Container?)?.removeChildAt(index, count)
+        currentContainer?.removeChildAt(index, count)
     }
 
     override fun move(from: Int, to: Int, count: Int) {
         println("move: $from -> $to [$count]")
-        repeat(count) { (current as? Container?)?.swapChildrenAt(from + it, to + it) }
+        repeat(count) { currentContainer?.swapChildrenAt(from + it, to + it) }
     }
 
     override fun onClear() {
         println("onClear")
-        (current as? Container?)?.removeChildren()
+        currentContainer?.removeChildren()
     }
 }
 

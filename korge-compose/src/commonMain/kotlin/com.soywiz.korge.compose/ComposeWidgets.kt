@@ -126,3 +126,15 @@ fun Image(bitmap: BmpSlice?, modifier: Modifier = Modifier, content: @Composable
         content
     )
 }
+
+@Composable
+fun Scrollable(width: Double = UI_DEFAULT_WIDTH, height: Double = UI_DEFAULT_WIDTH, content: @Composable () -> Unit = {}) {
+    ComposeKorgeView(
+        { UIScrollable(width, height) },
+        {
+            set(width) { this.width = width }
+            set(height) { this.height = height }
+        },
+        content
+    )
+}

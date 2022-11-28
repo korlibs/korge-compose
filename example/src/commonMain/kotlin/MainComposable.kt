@@ -91,6 +91,13 @@ private fun MainApp(width: Int, height: Int) {
                 star(8, 45.0, 100.0, x = 100.0, y = 100.0)
             }
         }
+        Scrollable() {
+            VStack {
+                for (n in 0 until 10) {
+                    Button("$n")
+                }
+            }
+        }
         HStack {
             Image(bitmap)
             Image(bitmap)
