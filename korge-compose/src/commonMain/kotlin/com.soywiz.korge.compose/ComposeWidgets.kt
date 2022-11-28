@@ -5,27 +5,29 @@ import com.soywiz.korev.Key
 import com.soywiz.korge.annotations.KorgeExperimental
 import com.soywiz.korge.input.*
 import com.soywiz.korge.ui.*
-import com.soywiz.korge.view.DummyView
-import com.soywiz.korge.view.SolidRect
-import com.soywiz.korge.view.View
-import com.soywiz.korge.view.addUpdater
+import com.soywiz.korge.view.*
 import com.soywiz.korge.view.vector.GpuShapeView
 import com.soywiz.korim.bitmap.Bitmaps
 import com.soywiz.korim.bitmap.BmpSlice
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.color.RGBA
+import com.soywiz.korim.text.*
 import com.soywiz.korim.vector.Context2d
-import com.soywiz.korma.geom.Anchor
-import com.soywiz.korma.geom.ScaleMode
+import com.soywiz.korma.geom.*
 
 @Composable
 fun Text(text: String, color: RGBA = Colors.WHITE, onClick: () -> Unit = {}) {
     ComposeKorgeView({
-        UIText("DUMMY", height = UIButton.DEFAULT_HEIGHT).also {
-            println("Created UIText")
+        TextBlock(RichTextData(text), height = UIButton.DEFAULT_HEIGHT).also {
+            it.align = TextAlignment.MIDDLE_LEFT
+            it.padding = Margin(0.0, 8.0)
+            it.wordWrap = true
         }
+        //UIText("DUMMY", height = UIButton.DEFAULT_HEIGHT).also {
+        //    println("Created UIText")
+        //}
     }) {
-        set(text) { this.text = it }
+        set(text) { this.text = RichTextData(it) }
         set(color) { this.colorMul = it }
         set(onClick) {
             this.onClick { onClick() }
@@ -46,13 +48,26 @@ fun Button(text: String, onClick: () -> Unit = {}) {
 }
 
 @Composable
-fun VStack(content: @Composable () -> Unit) {
-    ComposeKorgeView(::UIVerticalStack, {}, content)
+fun VStack(width: Double = UI_DEFAULT_WIDTH, adjustSize: Boolean = false, content: @Composable () -> Unit) {
+    ComposeKorgeView(
+        { UIVerticalStack(width, adjustSize = adjustSize) },
+        {
+            set(width) { this.width = it }
+            set(adjustSize) { this.adjustSize = it }
+        },
+        content
+    )
 }
 
 @Composable
-fun HStack(content: @Composable () -> Unit) {
-    ComposeKorgeView(::UIHorizontalStack, {}, content)
+fun HStack(height: Double = UI_DEFAULT_HEIGHT, content: @Composable () -> Unit) {
+    ComposeKorgeView(
+        { UIHorizontalStack(height) },
+        {
+            set(height) { this.height = it }
+        },
+        content
+    )
 }
 
 @Composable
@@ -103,7 +118,7 @@ fun Box(modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
 @Composable
 fun Image(bitmap: BmpSlice?, modifier: Modifier = Modifier, content: @Composable () -> Unit = {}) {
     ComposeKorgeView(
-        { UIImage(100.0, 100.0, Bitmaps.transparent, ScaleMode.SHOW_ALL, Anchor.CENTER) },
+        { UIImage(100.0, 100.0, Bitmaps.transparent, ScaleMode.SHOW_ALL, com.soywiz.korma.geom.Anchor.CENTER) },
         {
             set(bitmap) { this.bitmap = bitmap ?: Bitmaps.transparent }
             set(modifier) { applyModifiers(modifier) }
