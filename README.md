@@ -1,6 +1,6 @@
 # korge-compose
 
-KProject adding support for [JetPack compose](https://www.jetbrains.com/lp/compose-mpp/) composables to KorGE and Korlibs
+KProject adding support for [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/) composables to KorGE and Korlibs
 
 ## Usage
 
