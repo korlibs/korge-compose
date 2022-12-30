@@ -1,10 +1,10 @@
 # korge-compose
 
-KProject adding support for JetPack compose composables to KorGE
+KProject adding support for [Compose Multiplatform](https://www.jetbrains.com/lp/compose-mpp/) composables to KorGE and Korlibs
 
 ## Usage
 
-By using kproject:
+Add this line to your kproject dependency file:
 
 ### `deps.kproject.yml`
 
@@ -13,8 +13,8 @@ dependencies:
   - git::korge-compose::korlibs/korge-compose::/korge-compose::c6a980492155bb2cc480e3beda0fef4d6312ac3b
 ```
 
-You also have to apply the compose plugin as in the example
+You also have to apply the [compose plugin](https://plugins.jetbrains.com/plugin/16541-compose-multiplatform-ide-support) in IntelliJ like in the example
 
 ## Example
 
-* <https://github.com/korlibs/korge-compose/tree/c6a980492155bb2cc480e3beda0fef4d6312ac3b/example>
+* <https://github.com/korlibs/korge-compose/tree/main/example>
