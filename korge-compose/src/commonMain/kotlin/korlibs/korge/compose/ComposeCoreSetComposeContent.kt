@@ -1,9 +1,9 @@
-package com.soywiz.korge.compose
+package korlibs.korge.compose
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.*
-import com.soywiz.klock.*
-import com.soywiz.korge.view.*
+import korlibs.time.*
+import korlibs.korge.view.*
 import kotlinx.coroutines.*
 import kotlin.coroutines.*
 

@@ -4,24 +4,24 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.soywiz.klock.milliseconds
-import com.soywiz.klock.seconds
-import com.soywiz.korev.Key
-import com.soywiz.korge.component.*
-import com.soywiz.korge.compose.*
-import com.soywiz.korge.compose.Button
-import com.soywiz.korge.input.*
-import com.soywiz.korge.scene.Scene
-import com.soywiz.korge.ui.*
-import com.soywiz.korge.view.*
-import com.soywiz.korim.bitmap.BmpSlice
-import com.soywiz.korim.color.*
-import com.soywiz.korim.format.readBitmapSlice
-import com.soywiz.korim.paint.*
-import com.soywiz.korio.async.delay
-import com.soywiz.korio.file.std.resourcesVfs
-import com.soywiz.korma.geom.Anchor
-import com.soywiz.korma.geom.vector.*
+import korlibs.event.*
+import korlibs.time.milliseconds
+import korlibs.time.seconds
+import korlibs.korge.component.*
+import korlibs.korge.compose.*
+import korlibs.korge.compose.Button
+import korlibs.korge.input.*
+import korlibs.korge.scene.Scene
+import korlibs.korge.ui.*
+import korlibs.korge.view.*
+import korlibs.image.bitmap.BmpSlice
+import korlibs.image.color.*
+import korlibs.image.format.readBitmapSlice
+import korlibs.image.paint.*
+import korlibs.io.async.delay
+import korlibs.io.file.std.resourcesVfs
+import korlibs.math.geom.Anchor
+import korlibs.math.geom.vector.*
 import kotlin.coroutines.cancellation.CancellationException
 
 class MainComposable : Scene() {
@@ -34,7 +34,7 @@ class MainComposable : Scene() {
                     //println("RESIZED: $w, $h")
                     width = w
                     height = h
-                    this@sceneMain.setSize(w.toDouble(), h.toDouble())
+                    this@sceneMain.size(w.toDouble(), h.toDouble())
                 }
             }
             MainApp(width, height)
@@ -78,7 +78,7 @@ private fun MainApp(width: Int, height: Int) {
             delay(2.0.seconds)
         }
     }
-    VStack(width.toDouble(), adjustSize = true) {
+    VStack(width.toFloat(), adjustSize = true) {
         Text("$count", color)
         HStack {
             Button("-") { count-- }
@@ -86,12 +86,14 @@ private fun MainApp(width: Int, height: Int) {
         }
         Text("this is a reallly long text to see how, korge-compose handles long texts and figure out if this works or not")
         Canvas(color) {
-            fillStroke(color, Stroke(Colors.YELLOWGREEN, thickness = 4.0)) {
+            fillStroke(color, Stroke(Colors.YELLOWGREEN, thickness = 4f)) {
                 //roundRect(0.0, 0.0, 100.0, 100.0, 50 * ratio, 50 * ratio)
                 star(8, 45.0, 100.0, x = 100.0, y = 100.0)
             }
         }
-        Scrollable() {
+        // java.lang.NullPointerException: Parameter specified as non-null is null: method korlibs.korge.compose.ComposeWidgetsKt.Scrollable-0ZRKUbw, parameter size
+        //Scrollable() {
+        Scrollable(UI_DEFAULT_SIZE) {
             VStack {
                 for (n in 0 until 10) {
                     Button("$n")
@@ -161,12 +163,13 @@ fun OkErrorComponent() {
         //Box(Modifier.backgroundColor(color.value))
         Button("ok") { ok = true }
         Button("error") { ok = false }
-        Custom(color.value) {
-            Button("demo")
-        }
+        //Custom(color.value) {
+        //    Button("demo")
+        //}
     }
 }
 
+/*
 @Composable
 fun Custom(color: RGBA, content: @Composable () -> Unit = {}) {
     ComposeKorgeView({
@@ -186,3 +189,4 @@ class CustomView : Container() {
     }
 
 }
+*/

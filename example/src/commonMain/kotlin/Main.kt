@@ -1,7 +1,10 @@
-import com.soywiz.korge.*
-import com.soywiz.korge.scene.*
-import com.soywiz.korma.geom.*
+import korlibs.korge.*
+import korlibs.korge.scene.*
+import korlibs.math.geom.*
 
-suspend fun main() = Korge(scaleAnchor = Anchor.TOP_LEFT, scaleMode = ScaleMode.NO_SCALE, clipBorders = false, forceRenderEveryFrame = false) {
+suspend fun main() = Korge(
+    displayMode = KorgeDisplayMode(ScaleMode.NO_SCALE, Anchor.TOP_LEFT, clipBorders = false),
+    forceRenderEveryFrame = false
+).start {
     sceneContainer().changeTo({ MainComposable() })
 }

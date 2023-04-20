@@ -1,14 +1,10 @@
-package com.soywiz.korge.compose
+package korlibs.korge.compose
 
-import com.soywiz.korge.input.mouse
-import com.soywiz.korge.view.Circle
-import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.View
-import com.soywiz.korge.view.mask.mask
-import com.soywiz.korge.view.position
-import com.soywiz.korim.color.RGBA
-import com.soywiz.korma.geom.Anchor
-import com.soywiz.korma.geom.Rectangle
+import korlibs.image.color.RGBA
+import korlibs.korge.input.mouse
+import korlibs.korge.view.*
+import korlibs.korge.view.mask.mask
+import korlibs.math.geom.Anchor
 
 open class Modifier private constructor(val parts: List<ModifierPart> = listOf()) {
     fun then(other: ModifierPart): Modifier = Modifier(parts + listOf(other))
@@ -45,14 +41,14 @@ fun View.applyModifiers(modifier: Modifier) {
             is AnchorModifier -> anchor = mod.anchor
             is BackgroundColorModifier -> colorMul = mod.bgcolor
             is ClickableModifier -> this.mouse.click.also { it.clear() }.add { mod.onClick?.invoke() }
-            is SizeModifier -> setSize(mod.width, mod.height)
+            is SizeModifier -> size(mod.width, mod.height)
             is FillMaxWidthModifier -> {
-                this.x = 0.0
-                this.scaledWidth = parent!!.width * mod.ratio
+                this.x = 0f
+                this.scaledWidth = (parent!!.width * mod.ratio).toFloat()
             }
             is ClipModifier -> {
                 // @TODO: Fix this!
-                val mask = Circle(32.0)
+                val mask = Circle(32f)
                 this.mask = mask
                 (this as Container).addChild(mask)
             }
@@ -61,7 +57,7 @@ fun View.applyModifiers(modifier: Modifier) {
     if (anchor != null || padding != null) {
         val anchor = anchor ?: Anchor.TOP_LEFT
         val padding = padding ?: 0.0
-        val parentBounds = this.parent!!.getLocalBounds(Rectangle())
+        val parentBounds = this.parent!!.getLocalBounds()
         this.position((parentBounds.width - this.width) * anchor.sx - padding, (parentBounds.height - this.height) * anchor.sy - padding)
     }
 }

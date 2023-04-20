@@ -1,10 +1,18 @@
-import com.soywiz.korge.gradle.*
+import korlibs.korge.gradle.*
 
 plugins {
-        //alias(libs.plugins.korge)
-    //id("com.soywiz.korge") version "3.3.0"
-    id("com.soywiz.korge") version "4.0.0-alpha-1"
-    id("org.jetbrains.compose") version "1.2.1"
+    //id("com.soywiz.korge") version "999.0.0.999"
+    id("com.soywiz.korge") version "4.0.0-rc"
+    id("org.jetbrains.compose") version "1.4.0"
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
 }
 
 korge {
@@ -23,14 +31,16 @@ korge {
     targetJs()
     targetDesktop()
     //targetDesktopCross()
-    //targetIos()
-    //targetAndroidIndirect() // targetAndroidDirect()
+    targetIos()
+    targetAndroidDirect()
     //serializationJson()
-    //targetAndroidDirect()
+    //targetAndroidIndirect() // targetAndroidDirect()
+
+    androidCompileSdk = 29
+    androidTargetSdk = 29
 }
 
 dependencies {
     add("commonMainApi", project(":deps"))
     //add("commonMainApi", project(":korge-dragonbones"))
 }
-
