@@ -2,7 +2,7 @@ import korlibs.korge.gradle.*
 
 plugins {
     //id("com.soywiz.korge") version "999.0.0.999"
-    id("com.soywiz.korge") version "4.0.0-rc"
+    id("com.soywiz.korge") version "4.0.0-rc4"
     id("org.jetbrains.compose") version "1.4.0"
 }
 
@@ -43,4 +43,9 @@ korge {
 dependencies {
     add("commonMainApi", project(":deps"))
     //add("commonMainApi", project(":korge-dragonbones"))
+}
+
+compose {
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
+    kotlinCompilerPlugin.set(dependencies.compiler.forKotlin("1.8.20"))
 }
