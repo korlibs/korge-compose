@@ -30,12 +30,22 @@ class MainComposable : Scene() {
             var width by remember { mutableStateOf(width.toInt()) }
             var height by remember { mutableStateOf(height.toInt()) }
             LaunchedEffect(true) {
-                onStageResized { w, h ->
-                    //println("RESIZED: $w, $h")
+                fun onResized() {
+                    val w = views.actualVirtualWidth
+                    val h = views.actualVirtualHeight
                     width = w
                     height = h
                     this@sceneMain.size(w.toDouble(), h.toDouble())
                 }
+
+                onEvent(ReshapeEvent) {
+                    onResized()
+                }
+                onResized()
+                //onStageResized { w, h ->
+                //    //println("RESIZED: $w, $h")
+                //    this@sceneMain.size(w.toDouble(), h.toDouble())
+                //}
             }
             MainApp(width, height)
         }
