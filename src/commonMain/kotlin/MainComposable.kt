@@ -72,7 +72,7 @@ private fun MainApp(width: Int, height: Int) {
                 val r = n.toDouble() / nsteps.toDouble()
                 ratio = r
                 color = r.interpolate(Colors.RED, Colors.WHITE)
-                delay(10.milliseconds)
+                kotlinx.coroutines.delay(10.milliseconds)
             }
             println("LaunchedEffect=$count..ended")
         } catch (e: CancellationException) {
@@ -83,12 +83,12 @@ private fun MainApp(width: Int, height: Int) {
     LaunchedEffect(true) {
         while (true) {
             bitmap = resourcesVfs["korge.png"].readBitmapSlice()
-            delay(2.0.seconds)
+            kotlinx.coroutines.delay(2.0.seconds)
             bitmap = resourcesVfs["korim.png"].readBitmapSlice()
-            delay(2.0.seconds)
+            kotlinx.coroutines.delay(2.0.seconds)
         }
     }
-    VStack(width.toFloat(), adjustSize = true) {
+    VStack(width.toDouble(), adjustSize = true) {
         Text("$count", color)
         HStack {
             Button("-") { count-- }
@@ -96,7 +96,7 @@ private fun MainApp(width: Int, height: Int) {
         }
         Text("this is a reallly long text to see how, korge-compose handles long texts and figure out if this works or not")
         Canvas(color) {
-            fillStroke(color, Stroke(Colors.YELLOWGREEN, thickness = 4f)) {
+            fillStroke(color, Stroke(Colors.YELLOWGREEN, thickness = 4.0)) {
                 //roundRect(0.0, 0.0, 100.0, 100.0, 50 * ratio, 50 * ratio)
                 star(8, 45.0, 100.0, x = 100.0, y = 100.0)
             }

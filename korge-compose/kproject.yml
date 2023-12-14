@@ -5,4 +5,5 @@ dependencies:
 # https://androidx.dev/storage/compose-compiler/repository
 # https://github.com/JetBrains/compose-jb/issues/2108#issuecomment-1157978869
 - "maven::common::com.soywiz.korlibs.korge2:korge"
-- "maven::common::org.jetbrains.compose.runtime:runtime:1.4.0"
+- "maven::common::org.jetbrains.compose.runtime:runtime:1.5.11"
+#platforms: [jvm]
