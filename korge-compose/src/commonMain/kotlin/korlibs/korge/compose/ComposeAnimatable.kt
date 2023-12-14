@@ -9,7 +9,6 @@ import korlibs.io.async.delay
 import korlibs.math.interpolation.Easing
 import korlibs.math.interpolation.interpolate
 import korlibs.math.interpolation.toRatio
-import korlibs.memory.clamp01
 import korlibs.time.TimeSpan
 import korlibs.time.milliseconds
 import korlibs.time.seconds
@@ -24,10 +23,10 @@ class Animatable<T>(initialValue: T, val interpolator: Float.(start: T, end: T) 
         val start = this.value
         var elapsed = 0.milliseconds
         while (true) {
-            val ratio = (elapsed / time).clamp01()
-            value = interpolator(easing(ratio).toFloat(), start, end)
+            val ratio = (elapsed / time).toDouble().coerceIn(0.0, 1.0)
+            value = interpolator(easing(ratio.toFloat()), start, end)
             //println("ratio=$ratio, value=$value")
-            delay(10.milliseconds)
+            kotlinx.coroutines.delay(10.milliseconds)
             elapsed += 10.milliseconds
             if (ratio >= 1.0) break
         }

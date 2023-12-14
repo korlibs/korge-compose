@@ -1,9 +1,8 @@
 import korlibs.korge.gradle.*
 
 plugins {
-    //id("com.soywiz.korge") version "999.0.0.999"
-    id("com.soywiz.korge") version "4.0.5a"
-    id("org.jetbrains.compose") version "1.4.0"
+    alias(libs.plugins.korge)
+    id("org.jetbrains.compose") version "1.5.11"
 }
 
 allprojects {
@@ -20,19 +19,19 @@ korge {
 
 // To enable all targets at once
 
-    //targetAll()
+    targetAll()
 
 // To enable targets based on properties/environment variables
     //targetDefault()
 
 // To selectively enable targets
 
-    targetJvm()
-    targetJs()
-    targetDesktop()
+    //targetJvm()
+    //targetJs()
+    //targetDesktop()
     //targetDesktopCross()
-    targetIos()
-    targetAndroidDirect()
+    //targetIos()
+    //targetAndroidDirect()
     //serializationJson()
     //targetAndroidIndirect() // targetAndroidDirect()
 
@@ -46,6 +45,6 @@ dependencies {
 }
 
 compose {
-    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.8.21")
-    kotlinCompilerPlugin.set(dependencies.compiler.forKotlin("1.8.20"))
+    kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
+    kotlinCompilerPlugin.set(dependencies.compiler.forKotlin("1.9.20"))
 }

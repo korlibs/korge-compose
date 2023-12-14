@@ -43,12 +43,12 @@ fun View.applyModifiers(modifier: Modifier) {
             is ClickableModifier -> this.mouse.click.also { it.clear() }.add { mod.onClick?.invoke() }
             is SizeModifier -> size(mod.width, mod.height)
             is FillMaxWidthModifier -> {
-                this.x = 0f
-                this.scaledWidth = (parent!!.width * mod.ratio).toFloat()
+                this.x = 0.0
+                this.scaledWidth = (parent!!.width * mod.ratio).toDouble()
             }
             is ClipModifier -> {
                 // @TODO: Fix this!
-                val mask = Circle(32f)
+                val mask = Circle(32.0)
                 this.mask = mask
                 (this as Container).addChild(mask)
             }

@@ -48,7 +48,7 @@ fun Button(text: String, onClick: () -> Unit = {}) {
 }
 
 @Composable
-fun VStack(width: Float = UI_DEFAULT_SIZE.width, adjustSize: Boolean = false, content: @Composable () -> Unit) {
+fun VStack(width: Double = UI_DEFAULT_SIZE.width, adjustSize: Boolean = false, content: @Composable () -> Unit) {
     ComposeKorgeView(
         { UIVerticalStack(width, adjustSize = adjustSize) },
         {
@@ -60,7 +60,7 @@ fun VStack(width: Float = UI_DEFAULT_SIZE.width, adjustSize: Boolean = false, co
 }
 
 @Composable
-fun HStack(height: Float = UI_DEFAULT_SIZE.height, content: @Composable () -> Unit) {
+fun HStack(height: Double = UI_DEFAULT_SIZE.height, content: @Composable () -> Unit) {
     ComposeKorgeView(
         { UIHorizontalStack(height) },
         {

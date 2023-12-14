@@ -8,7 +8,7 @@ Add this line to your kproject dependency file:
 
 ### `deps.kproject.yml`
 
-```kotlin
+```yaml
 dependencies:
   - git::korge-compose::korlibs/korge-compose::/korge-compose::c6a980492155bb2cc480e3beda0fef4d6312ac3b
 ```
