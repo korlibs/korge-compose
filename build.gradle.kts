@@ -26,6 +26,7 @@ korge {
 
 // To selectively enable targets
 
+    targetWasmJs()
     //targetJvm()
     //targetJs()
     //targetDesktop()
