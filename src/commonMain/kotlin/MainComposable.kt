@@ -18,10 +18,8 @@ import korlibs.image.bitmap.BmpSlice
 import korlibs.image.color.*
 import korlibs.image.format.readBitmapSlice
 import korlibs.image.paint.*
-import korlibs.io.async.delay
 import korlibs.io.file.std.resourcesVfs
 import korlibs.math.geom.Anchor
-import korlibs.math.geom.vector.*
 import kotlin.coroutines.cancellation.CancellationException
 
 class MainComposable : Scene() {

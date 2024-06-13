@@ -1,4 +1,6 @@
+/*
 compose {
     kotlinCompilerPluginArgs.add("suppressKotlinVersionCompatibilityCheck=1.9.20")
     kotlinCompilerPlugin.set(dependencies.compiler.forKotlin("1.9.20"))
 }
+*/

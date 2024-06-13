@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import korlibs.image.color.RGBA
 import korlibs.image.color.interpolate
-import korlibs.io.async.delay
 import korlibs.math.interpolation.Easing
 import korlibs.math.interpolation.interpolate
 import korlibs.math.interpolation.toRatio
